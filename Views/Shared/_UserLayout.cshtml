@@ -1,0 +1,12 @@
+﻿@{
+    // use current action to determine active tab for register and change password tabs
+    var action = ViewContext.RouteData.Values["action"]?.ToString()!;
+    Layout = "_Layout";
+}
+
+    
+    <div class="container">
+        <main role="main" class="pb-3"> 
+            @RenderBody()
+        </main>
+    </div>

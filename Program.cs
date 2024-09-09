@@ -49,8 +49,16 @@ using (var scope = scopeFactory.CreateScope())
     await ConfigureIdentity.CreateAdminUserAsync(scope.ServiceProvider);
 }
 
+
+app.MapAreaControllerRoute(
+    name: "admin",
+    areaName: "Admin",
+    pattern: "Admin/{controller=User}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "page_sort",
+    pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}");
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
+    pattern: "{controller=Account}/{action=LogIn}/{id?}/{slug?}");
 
 app.Run();

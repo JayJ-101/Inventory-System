@@ -1,0 +1,69 @@
+﻿@model RegisterVM
+
+@{
+    ViewData["Title"] = "Register New User";
+}
+
+
+
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form method="post" asp-action="Register" class="formfloat">
+    <div class="form-group row mb-2">
+        <label class="col-form-label col-md-2 formfloat">Username:</label>
+        <div class="col-md-4 formfloat">
+            <input asp-for="UserName" class="form-control formfloat" />
+            <span asp-validation-for="UserName" class="text-danger formfloat"></span>
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-form-label col-md-2 formfloat">First Name:</label>
+        <div class="col-md-4 formfloat">
+            <input asp-for="FirstName" class="form-control formfloat" />
+            <span asp-validation-for="FirstName" class="text-danger formfloat"></span>
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-form-label col-md-2 formfloat">Last Name:</label>
+        <div class="col-md-4 formfloat">
+            <input asp-for="LastName" class="form-control formfloat" />
+            <span asp-validation-for="LastName" class="text-danger formfloat"></span>
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-form-label col-md-2 formfloat">Email Address:</label>
+        <div class="col-md-4 formfloat">
+            <input asp-for="Email" class="form-control formfloat" />
+            <span asp-validation-for="Email" class="text-danger formfloat"></span>
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-form-label col-md-2 formfloat">Password:</label>
+        <div class="col-md-4 formfloat">
+            <input type="password" asp-for="Password" class="form-control formfloat" />
+            <span asp-validation-for="Password" class="text-danger formfloat"></span>
+        </div>
+    </div>
+
+    <div class="form-group row mb-2">
+        <label class="col-form-label col-md-2 formfloat">Confirm Password:</label>
+        <div class="col-md-4 formfloat">
+            <input type="password" asp-for="ConfirmPassword" class="form-control formfloat" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger formfloat"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-6 formfloat">
+            <button type="submit" class="btn btn-primary formfloat">Register</button>
+            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary formfloat ml-2">Cancel</a>
+        </div>
+    </div>
+
+ 
+</form>
