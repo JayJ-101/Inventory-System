@@ -47,15 +47,15 @@
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
 
-        <div class="checkbox mb-3">
+       @*  <div class="checkbox mb-3">
             <label>
                 <input asp-for="RememberMe" type="checkbox"> @Html.DisplayNameFor(model => model.RememberMe)
             </label>
-        </div>
+        </div> *@
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <div class="form-group">
+       @*  <div class="form-group">
             Not registered? <a asp-action="Register">Register as a new user</a>
-        </div>
+        </div> *@
     </form>
 
 </div>

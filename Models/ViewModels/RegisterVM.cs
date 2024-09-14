@@ -1,12 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
-namespace Inventory_System.Models
+namespace Inventory_System.Models   
 {
     public class RegisterVM
     {
-        [Required(ErrorMessage="Please enter username.")]
+        [Required(ErrorMessage = "Please enter username.")]
         [StringLength(100)]
-        public string UserName { get; set; } =string.Empty;
+        [Remote("Check", "Validation", ErrorMessage = "User Already exist.")]
+        public string UserName { get; set; } = string.Empty;
 
 
         [Required(ErrorMessage = "Please enter a last name.")]

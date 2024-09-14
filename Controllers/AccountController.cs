@@ -36,7 +36,7 @@ namespace Inventory_System.Controllers
             {
                
                 var result = await signInManager.PasswordSignInAsync(
-                    model.UserName, model.Password, isPersistent: model.RememberMe,
+                    model.UserName, model.Password, isPersistent: false,
                     lockoutOnFailure: false);
 
                 if(result.Succeeded)

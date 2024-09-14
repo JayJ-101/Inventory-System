@@ -128,3 +128,10 @@ body {
     transform: rotate(360deg); /* Icon rotates 360 degrees on hover */
     transition: transform 0.5s ease-in-out; /* Smooth icon animation */
 }
+
+
+/**Validation*/
+.input-validation-error {
+    border: 2px solid #dc3545; /* same red as text-danger */
+    background-color: #faebd7; /* antique white */
+}

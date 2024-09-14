@@ -15,6 +15,6 @@ namespace Inventory_System.Models
 
         public string ReturnUrl { get; set; } = string.Empty;
 
-        public bool RememberMe { get; set; }    
+        //public bool RememberMe { get; set; }    
     }
 }
