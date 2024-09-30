@@ -1,9 +1,6 @@
-﻿using Inventory_System.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.AspNetCore.Identity;
 
-namespace Inventory_System.Models   
+namespace Inventory_System.Models
 {
     public  class ConfigureIdentity 
     {

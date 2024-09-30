@@ -11,5 +11,14 @@ namespace Inventory_System.Models
        : base(options)
         {
         }
+
+        public DbSet<Category> Categories { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new CategoryConfig());
+
+        }
     }
 }

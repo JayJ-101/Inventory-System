@@ -1,146 +1,92 @@
 ﻿@{
     Layout = "_Layout";
-    var action = ViewContext.RouteData.Values["action"]?.ToString()!;
+
+    // use current controller to determine if tab is active
+    var current = ViewContext.RouteData.Values["controller"]!.ToString() ?? "";
 }
-<div class="container-fluid">
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow">
 
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav ms-auto">
-                    @using Inventory_System.Models
-                    @using Microsoft.AspNetCore.Identity
-                    @inject SignInManager<User> SignInManager
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        <li class="nav-item mt-2">
-                            <span class="text-secondary me-2">Welcome, @User.Identity?.Name</span>
-                        </li>
+<header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Inventory System</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+            <a class="px-3 btn-primary" href="#" >Sign out</a>
+        </div>
+    </div>
+</header>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-secondary @Nav.Active("ChangePassword", action)"
-                               asp-action="ChangePassword" asp-controller="Account">
-                                <span class="fas fa-edit"></span> &nbsp; Change Password
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <form method="post" asp-action="SignIn" asp-controller="Account" class="d-inline">
-                                <input type="submit" value="Log Out" class="btn btn-outline-primary" />
-                            </form>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </nav>
-    </header>
-</div>
-
-    
-        
-       
 <div class="container-fluid">
     <div class="row">
+        <!-- Sidebar -->
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 mt-0 text-secondary" href="#">Inventory Management</a>
-
-            <div class="position-sticky pt-3 sidebar-sticky">
+            <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link text-white" aria-current="page" href="#">
-                            <span data-feather="home" class="align-text-bottom"></span>
+                        <a asp-action="Index" asp-controller="Dashboard" asp-area="Admin"
+                            class="nav-link @Nav.Active("DoashBoard",current)">
                             Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">
-                            <span data-feather="file" class="align-text-bottom"></span>
-                            Orders
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">
-                            <span data-feather="shopping-cart" class="align-text-bottom"></span>
+                        <a asp-action="Index" asp-controller="Product" asp-area="Admin"
+                            class="nav-link text-white @Nav.Active("Product",current)">
+                            <span data-feather="file"></span>
                             Products
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-secondary @Nav.Active("Index", action)"
-                           asp-action="Index" asp-controller="User" asp-area="Admin">
-                            <span class="fas fa-edit"></span> Users
+                        <a asp-action="Index" asp-controller="Category" asp-area="Admin"
+                            class="nav-link text-white @Nav.Active("Category",current)">
+                            <span data-feather="shopping-cart"></span>
+                            Categories
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">
-                            <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-                            Reports
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">
-                            <span data-feather="layers" class="align-text-bottom"></span>
-                            Integrations
+                        <a asp-action="Index" asp-controller="User" asp-area="Admin"
+                            class="nav-link text-white @Nav.Active("User",current)" >
+                            <span data-feather="users"></span>
+                            Users
                         </a>
                     </li>
                 </ul>
 
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-                    <span>Saved reports</span>
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Admin</span>
                     <a class="link-secondary" href="#" aria-label="Add a new report">
-                        <span data-feather="plus-circle" class="align-text-bottom"></span>
+                        <span data-feather="plus-circle"></span>
                     </a>
                 </h6>
                 <ul class="nav flex-column mb-2">
                     <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">
-                            <span data-feather="file-text" class="align-text-bottom"></span>
-                            Current month
+                        <a class="nav-link text-white" href="#">
+                            <span data-feather="file-text"></span>
+                            Settings
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">
-                            <span data-feather="file-text" class="align-text-bottom"></span>
-                            Last quarter
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">
-                            <span data-feather="file-text" class="align-text-bottom"></span>
-                            Social engagement
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-secondary" href="#">
-                            <span data-feather="file-text" class="align-text-bottom"></span>
-                            Year-end sale
+                        <a class="nav-link text-white" href="#">
+                            <span data-feather="file-text"></span>
+                            Profile
                         </a>
                     </li>
                 </ul>
             </div>
         </nav>
-    </div>
-</div>
 
-
+        <!-- Main Content Area -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group me-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                        <span data-feather="calendar" class="align-text-bottom"></span>
-                        This week
-                    </button>
-                </div>
-              
+                <h1 class="h2">@ViewData["Title"]</h1>
             </div>
-             @if (TempData.Keys.Contains("message")) {
-                <h4 class="bg-info text-center text-white p-2">@TempData["message"]</h4>
-            }
-            
-            @RenderBody()
+
+            <!-- Dynamic Content Area -->
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
         </main>
     </div>
 </div>
+

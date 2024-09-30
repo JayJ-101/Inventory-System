@@ -22,7 +22,38 @@ namespace Inventory_System.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Inventory_System.Models.DomainModels.User", b =>
+            modelBuilder.Entity("Inventory_System.Models.Category", b =>
+                {
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = "electronics",
+                            CategoryName = "Electronics"
+                        },
+                        new
+                        {
+                            CategoryId = "groceries",
+                            CategoryName = "Groceries"
+                        },
+                        new
+                        {
+                            CategoryId = "clothes",
+                            CategoryName = "Clothing"
+                        });
+                });
+
+            modelBuilder.Entity("Inventory_System.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -241,7 +272,7 @@ namespace Inventory_System.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Inventory_System.Models.DomainModels.User", null)
+                    b.HasOne("Inventory_System.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -250,7 +281,7 @@ namespace Inventory_System.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Inventory_System.Models.DomainModels.User", null)
+                    b.HasOne("Inventory_System.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -265,7 +296,7 @@ namespace Inventory_System.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Inventory_System.Models.DomainModels.User", null)
+                    b.HasOne("Inventory_System.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -274,7 +305,7 @@ namespace Inventory_System.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Inventory_System.Models.DomainModels.User", null)
+                    b.HasOne("Inventory_System.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

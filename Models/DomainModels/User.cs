@@ -15,7 +15,7 @@ namespace Inventory_System.Models
         public string LastName { get; set; } = string.Empty;
 
         [NotMapped]
-        public IList<string> RoleNames { get; set; }
+        public IList<string> RoleNames { get; set; } = null!;
 
     }
 }
