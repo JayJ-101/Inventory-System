@@ -1,14 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Inventory_System.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory_System.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
+    [Area("Admin")]
     public class CategoryController : Controller
     {
+        private Repository<Category> data { get; set; }
+        public CategoryController(InventorySystemDBContext ctx)=> data= new Repository<Category>(ctx);  
+
+
         // GET: GenreController
         public ActionResult Index()
         {
-            return View();
+            var categorries = data.List(new QueryOptions<Category>()
+            {
+                OrderBy = c => c.CategoryName
+            });
+            return View(categorries);
         }
 
         // GET: GenreController/Details/5

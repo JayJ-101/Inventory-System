@@ -5,6 +5,15 @@
     {
       "library": "fontawesome-iconpicker@3.2.0",
       "destination": "wwwroot/lib/fontawesome/"
+    },
+    {
+      "library": "bootstrap@5.3.3",
+      "destination": "wwwroot/lib/bootstrap/",
+      "files": [
+        "js/bootstrap.min.js",
+        "css/bootstrap.min.css",
+        "js/bootstrap.bundle.min.js"
+      ]
     }
   ]
 }

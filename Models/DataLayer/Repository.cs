@@ -14,6 +14,8 @@ namespace Inventory_System.Models
             dbset = context.Set<T>();
         }
 
+        
+
         public virtual IEnumerable<T> List(QueryOptions<T> options)
         {
             IQueryable<T> query = dbset;
@@ -39,6 +41,7 @@ namespace Inventory_System.Models
         }
 
         public virtual T? Get(int id) => dbset.Find(id);
+        public virtual T? Get(string id) => dbset.Find(id);
         public virtual T? Get(QueryOptions<T> options)
         {
             IQueryable<T> query = dbset;
